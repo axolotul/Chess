@@ -1,15 +1,19 @@
 #include "Position.h"
 #include <iostream>
 using namespace std;
+
+//default constructor
 Position::Position()
 {
 	setOccupied(0);
 }
-Position::Position(ChessPiece* p)
+
+//when position is captured
+Position::Position(ChessPiece* p, bool c)
 {
 	setOccupied(1);
-	//setPiece(t)
 	setPiece(p);
+	setColor(c);
 }
 void Position::setOccupied(bool o)
 {
@@ -19,30 +23,14 @@ bool Position::getOccupied()
 {
 	return occupied;
 }
-int Position::getPos()
-{
-	return pos;
-}
-void Position::setPos(int p)
-{
-	pos = p;
-}
+
+
 char Position::getType()
 {
 	return piece->getPiece();
 }
 void Position::setPiece(ChessPiece *p)
 {
-	//if (t == 'P')
-	//{
-	//	piece = new Pawn;
-	//	piece->setColor(1);
-	//}
-	//else if (t == 'p')
-	//{
-	//	piece = new Pawn;
-	//	piece->setColor(0);
-	//}
 	piece = p;
 }
 ChessPiece* Position::getPiece()
@@ -51,13 +39,17 @@ ChessPiece* Position::getPiece()
 }
 bool Position::getColor()
 {
-	return piece->getColor();
+	if (occupied == true)
+		return piece->getColor();
+	else
+		return 1;
 }
 void Position::setColor(bool c)
 {
 	piece->setColor(c);
 }
-bool Position::valid(int pos1, int pos2)
+//checks if piece movement is valid
+int Position::valid(int pos1, int pos2)
 {
 	return piece->move(pos1, pos2);
 }

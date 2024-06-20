@@ -1,13 +1,12 @@
 #pragma once
 #include "ChessPiece.h"
-class Pawn: public ChessPiece
+class King : public ChessPiece
 {
-	private:
-		bool isFirstMove;
 	public:
-		Pawn();
+		King();
 		int move(int pos1, int pos2) override;
 		char getPiece() const override;
 		void setColor(bool c) override;
 		bool getColor() const override;
 };
+

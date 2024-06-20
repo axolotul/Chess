@@ -3,9 +3,11 @@
 using namespace std;
 Pawn::Pawn()
 {
+	isFirstMove = 1;
+	color = 1;
 }
-
-bool Pawn::move(int pos1, int pos2)
+//checks for valid pawn movement
+int Pawn::move(int pos1, int pos2) 
 {
 	/*
 		Pawn move conditions:
@@ -17,38 +19,73 @@ bool Pawn::move(int pos1, int pos2)
 			Capture must be diagonal
 			'En Passant'
 	*/
-	cout << "Derived class did use virtual function" << endl;
+	int row1, row2, column1, column2;
+	for (int i = 8; i > 0; i--)
+	{
+		if ((pos1 - i) % 8 == 0)
+		{
+			column1 = (pos1 - i) / 8;
+			row1 = i;
+		}
+		if ((pos2 - i) % 8 == 0)
+		{
+			column2 = (pos2 - i) / 8;
+			row2 = i;
+		}
+	}
+	//cout << "Column: " << column1 << endl << "Row: " << row1 << endl;
+	//cout << "Column 2: " << column2 << endl << "Row 2: " << row2 << endl;
+
 	if (color == 1)
 	{
-		if (pos1 == pos2 + 1 + isFirstMove)
-			if 
+		if (pos2 <= 64 && pos2 >= 1)
+		{
 
+			if (pos2 == pos1 + 1 || pos2 == pos1 + 1 + isFirstMove)
+			{
+				isFirstMove = 0;
+				return 1;
+			}
 
+			else if (pos2 == pos1 - 7 || pos2 == pos1 + 9)
+			{
+				isFirstMove = 0;
+				return 2;
+			}
+			else
+			{
+				return 0;
+			}
 
-
-
+		}
 	}
-	else if (color == 0)
+
+	if (color == 0)
 	{
-		if (pos2 == pos1 - 1)
+		if (pos2 <= 64 && pos2 >= 1)
 		{
-			isFirstMove = 0;
-			return 1;
-		}
-		else if (pos2 == pos1 - 2 && isFirstMove == 1)
-		{
-			isFirstMove = 0;
-			return 1;
-		}
-		else
-		{
-			cout << pos2 << " != " << pos1 << " - 1" << endl;
-			return 0;
+
+			if (pos2 == pos1 - 1 || pos2 == pos1 - 1 - isFirstMove)
+			{
+				isFirstMove = 0;
+				return 1;
+			}
+
+			else if (pos2 == pos1 - 9 || pos2 == pos1 + 7)
+			{
+				isFirstMove = 0;
+				return 2;
+			}
+			else
+			{
+				return 0;
+			}
+
 		}
 	}
 
 }
-char Pawn::getPiece()
+char Pawn::getPiece() const
 {
 	if (color == 1)
 		return 'P';
@@ -59,7 +96,7 @@ void Pawn::setColor(bool c)
 {
 	color = c;
 }
-bool Pawn::getColor()
+bool Pawn::getColor() const
 {
 	return color;
 }

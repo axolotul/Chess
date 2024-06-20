@@ -1,25 +1,26 @@
 #pragma once
 #include "ChessPiece.h"
 #include "Pawn.h"
+#include "Knight.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "Queen.h"
+#include "King.h"
 class Position
 {
 	private:
 		bool occupied;
 		ChessPiece* piece;
-		int pos;
 	public:
 		Position();
-		Position(ChessPiece* p);
-		void Position1();
+		Position(ChessPiece* p, bool c);
 		bool getOccupied();
 		void setOccupied(bool o);
-		int getPos();
 		char getType();
 		bool getColor();
 		void setColor(bool c);
 		ChessPiece* getPiece();
 		void setPiece(ChessPiece* p);
-		void setPos(int p);
-		bool valid(int pos1, int pos2);
+		int valid(int pos1, int pos2);
 };
 

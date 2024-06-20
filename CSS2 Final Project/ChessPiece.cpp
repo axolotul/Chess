@@ -5,27 +5,22 @@ ChessPiece::ChessPiece()
 {
 	color = 1;
 }
-ChessPiece::ChessPiece(bool c)
+int ChessPiece::move(int pos1, int pos2)
 {
-	color = c;
-}
-
-bool ChessPiece::move(int pos1, int pos2)
-{
-	cout << "Error: Derived class did not use virtual function" << endl;
+	cout << "Error: Virtual function failed" << endl;
 	return 0;
 }
-char ChessPiece::getPiece()
+char ChessPiece::getPiece() const
 {
-	cout << "Error: Derived class did not use virtual function" << endl;
+	cout << "Error: Virtual function failed" << endl;
 	return 'X';
 }
 void ChessPiece::setColor(bool c)
 {
-	cout << "Error: Derived class did not use virtual function" << endl;
+	cout << "Error: Virtual function failed" << endl;
 }
-bool ChessPiece::getColor()
+bool ChessPiece::getColor() const
 {
-	cout << "Error: Derived class did not use virtual function" << endl;
+	cout << "Error: Virtual function failed" << endl;
 	return 0;
 }

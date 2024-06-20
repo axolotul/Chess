@@ -4,12 +4,12 @@ class ChessPiece
 	protected:
 		bool color;
 
+	//virtual functions, meant to be used for polymorphism
 	public:
 		ChessPiece();
-		ChessPiece(bool c);
 		virtual void setColor(bool c);
-		virtual bool getColor();
-		virtual bool move(int pos1, int pos2);
-		virtual char getPiece();
+		virtual bool getColor() const;
+		virtual int move(int pos1, int pos2);
+		virtual char getPiece() const;
 };
 
